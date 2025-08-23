@@ -44,9 +44,9 @@ $related_query = new WP_Query($related_args);
 @endphp
 
 @if($related_query->have_posts())
-<section class="related-posts bg-lighter -smt pt-20 pb-26">
+<section class="related-posts bg-white -smt pt-20 pb-26">
 	<div class="c-main">
-		<h3 class="text-2xl font-bold mb-6">Podobne wpisy</h3>
+		<h3 class="text-2xl font-bold mb-6">Wpisy z tej kategorii</h3>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 			@while($related_query->have_posts())
 			@php($related_query->the_post())
