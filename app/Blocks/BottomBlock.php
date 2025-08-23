@@ -45,7 +45,6 @@ class BottomBlock extends Block
 			->addTab('Elementy', ['placement' => 'top'])
 			->addMessage('Edycja', 'Pole edytujemy klikajac w menu panelu administratora "Wezwanie do działania".')
 			
-			
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])

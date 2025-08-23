@@ -36,21 +36,25 @@ class Hero extends Block
 				'multi_expand' => true,
 			])
 			->addTab('Treść', ['placement' => 'top']) 
-			->addGroup('hero', ['label' => 'Hero'])
+			->addGroup('g_hero', ['label' => 'Hero'])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
 			->addText('title', ['label' => 'Tytuł'])
-			->addWysiwyg('content', [
+			->addWysiwyg('txt', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
 			])
-			->addLink('cta', [
-				'label' => 'Przycisk',
+			->addLink('button1', [
+				'label' => 'Przycisk #1',
+				'return_format' => 'array',
+			])
+			->addLink('button2', [
+				'label' => 'Przycisk #2',
 				'return_format' => 'array',
 			])
 
@@ -64,17 +68,11 @@ class Hero extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('gfx_top', [
-				'label' => 'Grafika górna',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
+			->addText('section_id', [
+				'label' => 'ID',
 			])
-			->addTrueFalse('gfx_bottom', [
-				'label' => 'Grafika dolna',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
 			]);
 
 		return $hero;
@@ -83,10 +81,10 @@ class Hero extends Block
 	public function with()
 	{
 		return [
-			'hero' => get_field('hero'),
+			'g_hero' => get_field('g_hero'),
 			'flip' => get_field('flip'),
-			'gfx_top' => get_field('gfx_top'),
-			'gfx_bottom' => get_field('gfx_bottom'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 		];
 	}
 }

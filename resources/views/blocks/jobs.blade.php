@@ -3,7 +3,7 @@
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="accordion faq relative overflow-hidden -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	<div class="__wrapper c-main relative z-2">
-		<h2 data-gsap-element="header" class="w-full lg:w-1/2 __before">{{ $g_jobs['title'] }}</h2>
+		<h2 data-gsap-element="header" class="w-full lg:w-1/2">{{ $g_jobs['title'] }}</h2>
 		<div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-20 mt-10">
 			<div class="__content order2">
 				@if (!empty($g_jobs['button']))

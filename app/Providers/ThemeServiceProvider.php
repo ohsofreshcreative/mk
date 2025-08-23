@@ -33,8 +33,9 @@ class ThemeServiceProvider extends SageServiceProvider
 				'public' => true,
 				'has_archive' => false,
 				'rewrite' => ['slug' => 'oferta'],
-				'supports' => ['title', 'editor', 'thumbnail'],
+				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 				'show_in_rest' => true,
+				'taxonomies' => ['category'],
 				'menu_icon' => 'dashicons-list-view',
 			]);
 		});

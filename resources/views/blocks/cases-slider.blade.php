@@ -39,7 +39,7 @@ $background_image_url = $background_field['url'];
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="cases-slider c-main relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	@if ($title)
-	<h2 data-gsap-element="header" class="__before">{{ $title }}</h2>
+	<h2 data-gsap-element="header" class="">{{ $title }}</h2>
 	@endif
 
 	@if ($cases->have_posts())

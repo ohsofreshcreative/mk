@@ -9,19 +9,17 @@ $sectionClass .= $graybg ? ' section-gray' : '';
 $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 
-$sectionId = $block->data['id'] ?? null;
-$customClass = $block->data['className'] ?? '';
 @endphp
 
 <!--- text-image -->
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="text-image relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="text-image relative -smt {{ $sectionClass }} {{ $section_class }}">
 
 	<div class="__wrapper c-main relative">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 			@if (!empty($textimg['image']))
-			<div data-gsap-element="img" class="__img order1">
-				<img class="object-cover w-full __img img-xl" src="{{ $textimg['image']['url'] }}" alt="{{ $textimg['image']['alt'] ?? '' }}">
+			<div data-gsap-element="{{ $flip ? 'img-right' : 'img-left' }}" class="image-reveal-wrapper __img order1">
+				<img class="object-cover w-full __img img-xl radius-img" src="{{ $textimg['image']['url'] }}" alt="{{ $textimg['image']['alt'] ?? '' }}">
 			</div>
 			@endif
 
@@ -29,7 +27,7 @@ $customClass = $block->data['className'] ?? '';
 				<h2 data-gsap-element="header" class="">{{ $textimg['title'] }}</h2>
 
 				<div data-gsap-element="txt" class="mt-2">
-					{!! $textimg['content'] !!}
+					{!! $textimg['txt'] !!}
 				</div>
 
 				@if (!empty($textimg['button']))
@@ -39,13 +37,5 @@ $customClass = $block->data['className'] ?? '';
 			</div>
 
 		</div>
-		@if ($bgimage)
-		<img data-gsap-element="bg1" class="__bg--first absolute" src="{{ $bgimage['url'] }}" alt="{{ $bgimage['alt'] ?? '' }}">
-		@endif
-	</div>
-
-		@if ($bgimage2)
-		<img data-gsap-element="bg2" class="__bg--second absolute" src="{{ $bgimage2['url'] }}" alt="{{ $bgimage2['alt'] ?? '' }}">
-		@endif
 
 </section>

@@ -7,8 +7,8 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class CategoryPosts extends Block
 {
-    public $name = 'Posty z kategorii';
-    public $description = 'Wyświetla posty z wybranej kategorii';
+    public $name = 'Baza wiedzy - Ostatnie wpisy';
+    public $description = 'category-posts';
     public $slug = 'category-posts';
     public $category = 'formatting';
     public $icon = 'admin-post';
@@ -31,7 +31,7 @@ class CategoryPosts extends Block
                 'required' => 0,
             ])
             ->addAccordion('accordion1', [
-                'label' => 'Ustawienia postów',
+                'label' => 'Baza wiedzy - Ostatnie wpisy',
                 'open' => true,
                 'multi_expand' => true,
             ])
@@ -91,12 +91,60 @@ class CategoryPosts extends Block
                 'default_value' => 'grid',
                 'ui' => 1,
             ])
-            ->addTrueFalse('flip', [
-                'label' => 'Odwrotna kolejność',
-                'ui' => 1,
-                'ui_on_text' => 'Tak',
-                'ui_off_text' => 'Nie',
-            ]);
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
+			->addTrueFalse('flip', [
+				'label' => 'Odwrotna kolejność',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('lightbg', [
+				'label' => 'Jasne tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('graybg', [
+				'label' => 'Szare tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('brandbg', [
+				'label' => 'Tło marki',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			]);
 
         return $categoryPosts;
     }
@@ -127,7 +175,16 @@ class CategoryPosts extends Block
             'show_image' => $show_image,
             'show_excerpt' => $show_excerpt,
             'layout' => get_field('layout'),
-            'flip' => get_field('flip'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
+			'flip' => get_field('flip'),
+			'wide' => get_field('wide'),
+			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
         ];
     }
 }

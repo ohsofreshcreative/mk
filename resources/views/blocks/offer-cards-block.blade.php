@@ -1,6 +1,7 @@
 @php
+// Klasy sekcji (opcjonalne tła, marginesy)
 $sectionClass = '';
-
+$sectionClass .= $wide ? ' wide' : '';
 $sectionClass .= $nomt ? ' !mt-0' : '';
 $sectionClass .= $lightbg ? ' section-light' : '';
 $sectionClass .= $graybg ? ' section-gray' : '';
@@ -9,107 +10,92 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 $sectionId = $block->data['id'] ?? null;
 $customClass = $block->data['className'] ?? '';
+
+// Unikalny identyfikator instancji (dla JS)
+$uid = 'offer-tabs-' . ($sectionId ?: wp_unique_id());
+
+// Normalizacja wartości kolumn (2/3/4)
+$colCount = in_array((string)$columns, ['2', '3', '4'], true) ? (string)$columns : '3';
 @endphp
 
-<!-- offer-cards-block -->
+<section data-gsap-anim="section"
+	@if($sectionId) id="{{ $sectionId }}" @endif
+	class="offer-cards -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="offer-cards -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 	<div class="{{ $block->classes }}">
-
 		<div class="__wrapper c-main">
-			<h2 data-gsap-element="header" class="m-title __before">{{ $title }}</h2>
-			<div data-gsap-element="txt" class="mb-14">{!! $content !!}</div>
 
-			@if(!empty($offer_cards))
-			@if($display_type === 'grid')
-			<div class="__grid mt-10 columns-{{ $columns ?? '3' }}">
-				@foreach($offer_cards as $card)
-				<div class="__cards">
-					<a href="{{ $card['cta']['url'] }}" target="{{ $card['cta']['target'] }}">
-						<div data-gsap-element="card" class="__card bg-white b-border-light">
+			@if(!empty($subtitle))
+			<p class="subtitle-p text-center">{{ $subtitle }}</p>
+			@endif
+			@if(!empty($title))
+			<h2 data-gsap-element="header" class="m-title text-center">{{ $title }}</h2>
+			@endif
 
-							<div class="__content p-10">
-								@if(!empty($card['offer_title']))
-								<h5 class="block m-title">{{ $card['offer_title'] }}</h5>
+			@if(!empty($tabs))
+			<div id="{{ $uid }}-root" class="offer-tabs mt-16" data-offer-tabs-root>
+				<div class="offer-tabs__nav mb-8" role="tablist" aria-label="Kategorie ofert">
+					<ul class="flex flex-wrap gap-2 justify-center">
+						@foreach($tabs as $i => $tab)
+						<li data-gsap-element="tab">
+							<button
+								type="button"
+								class="stroke-btn offer-tab px-4 py-2 rounded border leading-none transition @if($i===0) is-active @endif"
+								role="tab"
+								aria-selected="{{ $i===0 ? 'true' : 'false' }}"
+								aria-controls="{{ $uid }}-panel-{{ $tab['id'] }}"
+								id="{{ $uid }}-tab-{{ $tab['id'] }}">
+								{{ $tab['label'] }}
+							</button>
+						</li>
+						@endforeach
+					</ul>
+				</div>
+
+				<div class="offer-tabs__panels">
+					@foreach($tabs as $i => $tab)
+					<div
+						id="{{ $uid }}-panel-{{ $tab['id'] }}"
+						class="offer-tabpanel @if($i!==0) hidden @endif"
+						role="tabpanel"
+						aria-labelledby="{{ $uid }}-tab-{{ $tab['id'] }}">
+						@if(!empty($tab['posts']))
+						<div class="__grid mt-6 grid grid-cols-1 gap-6">
+							@foreach($tab['posts'] as $post)
+							<article class="__card bg-white b-border-light h-full flex flex-col rounded-3xl">
+								@if(!empty($post['image']))
+								<a class="rounded-2xl overflow-hidden" href="{{ $post['permalink'] }}" class="block">{!! $post['image'] !!}</a>
 								@endif
-								@if(!empty($card['offer_description']))
-								<div class="__txt">{{ $card['offer_description'] }}</div>
-								@endif
-								@if(!empty($card['cta']))
-								<div class="__anchor m-btn">
-									<svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
-										<path d="M11.5645 0L22 10L11.5645 20L8.83878 17.388L14.6211 11.847H0V8.15301H14.6211L8.83878 2.61205L11.5645 0Z" fill="#E30613" />
-									</svg>
+
+								<div class="__content p-6 flex flex-col grow">
+									<h5 class="m-title">
+										<a href="{{ $post['permalink'] }}" class="hover:underline">{{ $post['title'] }}</a>
+									</h5>
+
+									@if(!empty($post['excerpt']))
+									<p class="text-sm opacity-80 mb-4">{{ $post['excerpt'] }}</p>
+									@endif
+
+									<div class="mt-auto">
+										<a class="underline-btn m-btn inline-flex items-center gap-2" href="{{ $post['permalink'] }}">
+											Dowiedz się więcej
+										</a>
+									</div>
 								</div>
-								@endif
-							</div>
-
-							@if(!empty($card['offer_image']))
-							<div class="__img">
-								{!! wp_get_attachment_image($card['offer_image']['ID'], 'medium', false, ['class' => 'img-fluid']) !!}
-							</div>
-							@endif
+							</article>
+							@endforeach
 						</div>
-					</a>
+						@else
+						<div class="no-data text-sm opacity-70">Brak ofert w tej kategorii.</div>
+						@endif
+					</div>
+					@endforeach
 				</div>
-				@endforeach
 			</div>
+			@else
+			<div class="no-data">Brak danych oferty. Dodaj wpisy w „Oferta” i przypisz kategorie.</div>
+			@endif
+
 		</div>
-		@else
-
-		<div class="swiper offer-swiper !overflow-visible">
-			<div data-gsap-element="arrows" class="__arrows absolute flex gap-4 z-10">
-				<div class="swiper-button-prev">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 0L11.5 12.0235L0.5 24L6.26389 12.0706L0.5 0Z" fill="white" />
-					</svg>
-					</svg>
-				</div>
-
-				<div class="swiper-button-next">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 0L11.5 12.0235L0.5 24L6.26389 12.0706L0.5 0Z" fill="white" />
-					</svg>
-				</div>
-			</div>
-			<div class="swiper-wrapper items-stretch">
-
-				@foreach($offer_cards as $card)
-				<div class="swiper-slide !h-auto">
-					<a href="{{ $card['cta']['url'] }}" target="{{ $card['cta']['target'] }}">
-						<div data-gsap-element="card" class="__card bg-white b-border-light">
-
-							<div class="__content p-10">
-								@if(!empty($card['offer_title']))
-								<h5 class="block m-title">{{ $card['offer_title'] }}</h5>
-								@endif
-								@if(!empty($card['offer_description']))
-								<div class="__txt">{{ $card['offer_description'] }}</div>
-								@endif
-								@if(!empty($card['cta']))
-								<div class="__anchor m-btn">
-									<svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
-										<path d="M11.5645 0L22 10L11.5645 20L8.83878 17.388L14.6211 11.847H0V8.15301H14.6211L8.83878 2.61205L11.5645 0Z" fill="#E30613" />
-									</svg>
-								</div>
-								@endif
-							</div>
-
-							@if(!empty($card['offer_image']))
-							<div class="__img">
-								{!! wp_get_attachment_image($card['offer_image']['ID'], 'medium', false, ['class' => 'img-fluid']) !!}
-							</div>
-							@endif
-						</div>
-					</a>
-				</div>
-				@endforeach
-			</div>
-		</div>
-		@endif
-		@else
-		<div class="no-data">Brak danych oferty. Dodaj je w ustawieniach.</div>
-		@endif
 	</div>
-
 </section>

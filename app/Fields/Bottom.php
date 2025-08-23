@@ -36,8 +36,16 @@ class Bottom extends Field
 			])
 			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
-			->addText('phone', ['label' => 'Telefon'])
-			->addText('mail', ['label' => 'Adres e-mail'])
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/

@@ -5,7 +5,7 @@ $sectionClass = '';
 <section data-gsap-anim="section" class="contact -spt {{ $sectionClass }}">
 
 	<div class="__wrapper c-main-wide relative z-2">
-		<h2 class="flex __before m-title w-full md:w-1/2">{!! $g_contact_1['title'] !!}</h2>
+		<h2 class="flex m-title w-full md:w-1/2">{!! $g_contact_1['title'] !!}</h2>
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-14">
 			<div class="__content w-full lg:w-11/12 flex flex-col justify-between">
 				<div class="__data">

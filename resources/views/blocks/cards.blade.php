@@ -15,7 +15,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		<div class="">
 
 			@if (!empty($tiles['title']))
-			<h2 class="__before mb-10">{{ strip_tags($tiles['title']) }}</h2>
+			<h2 class="mb-10">{{ strip_tags($tiles['title']) }}</h2>
 			@endif
 
 			@if (!empty($tiles['repeater']))

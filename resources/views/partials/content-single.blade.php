@@ -1,144 +1,89 @@
-@php
-
-
-@endphp
-
-<section data-gsap-anim="section" class="{{ $sectionClass }}">
-	<div class="__wrapper c-main pt-40">
-		<div class="__content grid grid-cols-1 md:grid-cols-2 gap-10 b-border-b pb-16 mb-18">
-			<h2 data-gsap-element="header" class="">{{ get_the_title() }}</h2>
+<section data-gsap-anim="section" class="bg-gradient relative overflow-hidden">
+	<div class="__wrapper c-main relative z-10 py-40">
+		<div class="__content w-full sm:w-3/4 m-auto pb-10">
+			<p data-gsap-element="subheader" class="subtitle-p text-center">
+				{{ is_category() ? single_cat_title('', false) : (get_the_category()[0]->name ?? '') }}
+			</p>
+			<h2 data-gsap-element="header" class="trajan text-white text-center">{{ get_the_title() }}</h2>
 			@if(has_excerpt())
 			<div data-gsap-element="content" class="">
 				{!! get_the_excerpt() !!}
 			</div>
 			@endif
 		</div>
-		@if (has_post_thumbnail())
-		<img src="{{ get_the_post_thumbnail_url(null, 'full') }}" alt="{{ get_the_title() }}">
-		@endif
 	</div>
+	<img class="absolute mix-blend-soft-light -top-20 -right-80" src="/wp-content/uploads/2025/08/logo-stroke.svg" />
 </section>
 
+@if (has_post_thumbnail())
+<div class="relative z-10 -mt-32">
+	<div class="c-wide">
+		<img class="img-2xl w-full object-cover radius-img" src="{{ get_the_post_thumbnail_url(null, 'full') }}" alt="{{ get_the_title() }}">
+	</div>
+</div>
+@endif
+
+<div id="tresc" class="__entry mt-20">
+	<div class="c-main">
+		<div class="w-full md:w-2/3 m-auto">
+			{!! the_content() !!}
+		</div>
+	</div>
+</div>
+
 @php
-$content = apply_filters('the_content', get_the_content());
+$current_id = get_the_ID();
+$categories = wp_get_post_categories($current_id);
+$related_args = [
+'category__in' => $categories,
+'post__not_in' => [$current_id],
+'posts_per_page' => 3,
+'ignore_sticky_posts' => 1,
+];
+$related_query = new WP_Query($related_args);
+@endphp
 
-preg_match_all('/<h([1-4])[^>]*>(.*?)<\/h[1-4]>/', $content, $matches, PREG_SET_ORDER);
-
-		$toc = '<nav class="toc">
-			<ul>';
-				$used_ids = [];
-				foreach ($matches as $match) {
-				$level = $match[1];
-				$title = strip_tags($match[2]);
-				$id = sanitize_title($title);
-				$base_id = $id;
-				$i = 2;
-				while (in_array($id, $used_ids)) {
-				$id = $base_id . '-' . $i;
-				$i++;
-				}
-				$used_ids[] = $id;
-				$content = preg_replace(
-				'/<h' . $level . '[^>]*>' . preg_quote($match[2], '/' ) . '<\/h' . $level . '>/' , '<h' . $level . ' id="' . $id . '">' . $match[2] . '</h' . $level . '>' ,
-					$content,
-					1
-					);
-					$toc .='<li class="toc-h' . $level . '"><a href="#' . $id . '">' . $title . '</a></li>' ;
-					}
-					$toc .='</ul></nav>' ;
-					@endphp
-
-					<div class="__content c-main -smt grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10">
-
-					<div class="relative md:sticky top-0 md:top-30 h-max">
-						<h5 class="m-title">Spis treści</h5>
-						@if(count($matches))
-						{!! $toc !!}
-						@endif
+@if($related_query->have_posts())
+<section class="related-posts bg-lighter -smt pt-20 pb-26">
+	<div class="c-main">
+		<h3 class="text-2xl font-bold mb-6">Podobne wpisy</h3>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			@while($related_query->have_posts())
+			@php($related_query->the_post())
+			<article @php(post_class(['bg-white', 'rounded-2xl' , 'p-4' ]))>
+				<header>
+					@if(has_post_thumbnail())
+					<div class="overflow-hidden rounded-xl">
+						<a class="" href="{{ get_permalink() }}">
+							{!! get_the_post_thumbnail(null, 'large', ['class' => 'featured-image img-xs rounded-xl object-cover']) !!}
+						</a>
 					</div>
-
-					<div id="tresc" class="__entry">
-						{!! $content !!}
-					</div>
-
-					</div>
-
-
-					@php
-					$current_id = get_the_ID();
-					$categories = wp_get_post_categories($current_id);
-					$related_args = [
-					'category__in' => $categories,
-					'post__not_in' => [$current_id],
-					'posts_per_page' => 3,
-					'ignore_sticky_posts' => 1,
-					];
-					$related_query = new WP_Query($related_args);
-					@endphp
-
-					@if($related_query->have_posts())
-					<section class="related-posts bg-lighter -smt pt-20 pb-26">
-					<div class="c-main">
-						<h3 class="text-2xl font-bold mb-6">Podobne wpisy</h3>
-						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							@while($related_query->have_posts())
-							@php($related_query->the_post())
-							<article @php(post_class())>
-								<header>
-									@if(has_post_thumbnail())
-									<a href="{{ get_permalink() }}">
-										{!! get_the_post_thumbnail(null, 'large', ['class' => 'featured-image img-xs m-img']) !!}
-									</a>
-									@endif
-
-									<h2 class="entry-title text-h5">
-										<a href="{{ get_permalink() }}">
-											{{ get_the_title() }}
-										</a>
-									</h2>
-
-								</header>
-
-								<a class="underline-btn m-btn" href="{{ get_permalink() }}">
-									Przeczytaj
-								</a>
-								
-							</article>
-							@endwhile
-							@php(wp_reset_postdata())
-						</div>
-						</div>
-					</section>
 					@endif
 
+					<h6 class="entry-title text-h5 mt-6 rounded p-">
+						<a href="{{ get_permalink() }}">
+							{!! get_the_title() !!}
+						</a>
+					</h6>
 
-				<script>
-				document.addEventListener('DOMContentLoaded', function() {
-  const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]'); // Select all headings with IDs
-  const tocLinks = document.querySelectorAll('.toc ul li a'); // Select all links in the TOC
+					<!--  @include('partials.entry-meta') -->
+				</header>
 
-  function updateActiveLink() {
-    headings.forEach((heading) => {
-      const headingTop = heading.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
+				<a class="m-btn block" href="{{ get_permalink() }}">
+					<div class="blog-btn bg-p-light rounded-full w-max">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+							<path d="M22.7454 9.26177L14.0655 0.581915C13.6572 0.173617 12.9932 0.173556 12.585 0.581781C12.1768 0.990005 12.1768 1.65399 12.5851 2.06229L19.4744 8.95162L1.99787 8.95242C1.41912 8.95267 0.95049 9.4213 0.950243 10C0.950595 10.5788 1.41932 11.0475 1.99806 11.0479L19.4752 11.0471L12.5869 17.9354C12.1786 18.3437 12.1787 19.0076 12.587 19.4159C12.9953 19.8242 13.6593 19.8243 14.0675 19.4161L22.7434 10.7402C23.1537 10.3341 23.1536 9.67007 22.7454 9.26177Z" fill="#2B176A" />
+						</svg>
+					</div>
+				</a>
 
-      if (headingTop < windowHeight - 300) {
-        // Remove the 'active' class from all TOC links
-        tocLinks.forEach((link) => {
-          link.parentNode.classList.remove('active');
-        });
-
-        // Add the 'active' class to the corresponding TOC link
-        const id = heading.id;
-        const activeLink = document.querySelector(`.toc ul li a[href="#${id}"]`);
-        if (activeLink) {
-          activeLink.parentNode.classList.add('active');
-        }
-      }
-    });
-  }
-  updateActiveLink();
-
-  window.addEventListener('scroll', updateActiveLink);
-});
-					</script>
+				<!--   <div class="entry-summary">
+    @php(the_excerpt())
+  </div> -->
+			</article>
+			@endwhile
+			@php(wp_reset_postdata())
+		</div>
+	</div>
+</section>
+@endif

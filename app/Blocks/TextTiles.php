@@ -41,8 +41,13 @@ class TextTiles extends Block
 			/*--- TAB #1 ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_tiles', ['label' => ''])
-			->addText('title', ['label' => 'Tytuł'])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
 			->addText('subtitle', ['label' => 'Śródtytuł'])
+			->addText('title', ['label' => 'Tytuł'])
 			->addTextarea('text', [
 				'label' => 'Opis',
 				'rows' => 4,

@@ -39,19 +39,13 @@ class Numbers extends Block
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_numbers', ['label' => ''])
 
-			->addImage('image', [
-				'label' => 'Tło',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-
+			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
-			
 
 			->addRepeater('r_numbers', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
+				'min' => 4,
 				'max' => 4,
 				'button_label' => 'Dodaj kafelek'
 			])
@@ -62,6 +56,9 @@ class Numbers extends Block
 			])
 			->addText('card_title', [
 				'label' => 'Nagłówek',
+			])
+			->addText('symbol', [
+				'label' => 'Symbol',
 			])
 			->addTextarea('card_txt', [
 				'label' => 'Opis',
@@ -75,6 +72,12 @@ class Numbers extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -105,8 +108,8 @@ class Numbers extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('graybg', [
-				'label' => 'Szare tło',
+			->addTrueFalse('slightbg', [
+				'label' => 'Alternatywne tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -131,12 +134,14 @@ class Numbers extends Block
 	{
 		return [
 			'g_numbers' => get_field('g_numbers'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
 			'gap' => get_field('gap'),
 			'lightbg' => get_field('lightbg'),
-			'graybg' => get_field('graybg'),
+			'slightbg' => get_field('slightbg'),
 			'whitebg' => get_field('whitebg'),
 			'brandbg' => get_field('brandbg'),
 		];

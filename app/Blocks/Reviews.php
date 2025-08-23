@@ -38,38 +38,65 @@ class Reviews extends Block
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_reviews', ['label' => ''])
-
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
+			->addText('txt', ['label' => 'Opis'])
+			->endGroup()
 
-			->addRepeater('repeater', [
+			/*--- OPINIE ---*/
+
+			->addTab('Opinie', ['placement' => 'top'])
+			->addRepeater('r_reviews', [
 				'label' => 'Slider - Opinie',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
 				'max' => 15,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
+			->addImage('img', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addTextarea('card_txt', [
+			->addTextarea('txt', [
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',
 			])
-			->addText('card_name', [
+			->addText('name', [
 				'label' => 'Klient',
 			])
 			->endRepeater()
 
-			->endGroup()
-
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
+
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -80,8 +107,20 @@ class Reviews extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
+			->addTrueFalse('graybg', [
+				'label' => 'Szare tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('brandbg', [
+				'label' => 'Tło marki',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -94,10 +133,21 @@ class Reviews extends Block
 	{
 		return [
 			'g_reviews' => get_field('g_reviews'),
-			'reviews' => get_field('g_reviews')['repeater'] ?? [],
+			'r_reviews' => get_field('r_reviews'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
+			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
 		];
 	}
+
+    public function enqueue()
+    {
+        // Pozostaw tę metodę pustą.
+    }
 }

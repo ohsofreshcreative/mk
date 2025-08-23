@@ -7,8 +7,12 @@
 	@php(do_action('get_header'))
 	@php(wp_head())
 
-	{{-- Adobe Fonts --}}
-	<link rel="stylesheet" href="https://use.typekit.net/gxc6evb.css">
+	{{-- Fonts --}}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.typekit.net/lsg3eay.css">
 
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -25,7 +29,7 @@
 
 		@include('sections.header')
 
-		<main id="main" class="main -menu-mt">
+		<main id="main" class="main">
 			@yield('content')
 		</main>
 

@@ -5,11 +5,11 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HeroSecond extends Block
+class HeroSub extends Block
 {
-	public $name = 'Sekcja Hero - Alternatywne';
-	public $description = 'hero-second';
-	public $slug = 'hero-second';
+	public $name = 'Hero - Podstrona';
+	public $description = 'hero-sub';
+	public $slug = 'hero-sub';
 	public $category = 'formatting';
 	public $icon = 'align-full-width';
 	public $keywords = ['tresc', 'zdjecie'];
@@ -22,41 +22,38 @@ class HeroSecond extends Block
 
 	public function fields()
 	{
-		$hero_second = new FieldsBuilder('hero-second');
+		$hero_sub = new FieldsBuilder('hero-sub');
 
-		$hero_second
-			->setLocation('block', '==', 'acf/hero-second') // ważne!
+		$hero_sub
+			->setLocation('block', '==', 'acf/hero-sub') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Hero - Alternatywne',
+				'label' => 'Hero - Podstrona',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			->addTab('Treść', ['placement' => 'top']) 
-			->addGroup('g_herosecond', ['label' => 'Hero - Pojedyncza oferta'])
+			->addTab('Treść', ['placement' => 'top'])
+			->addGroup('g_hero_sub', ['label' => 'Hero - Podstrona'])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
+				'required' => 1,
 			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addWysiwyg('content', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
+			->addText('subtitle', [
+				'label' => 'Śródtytuł',
 			])
-			->addLink('cta', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
+			->addText('title', [
+				'label' => 'Tytuł',
+				'required' => 1,
 			])
 
 			->endGroup()
 
-			->addTab('Ustawienia bloku', ['placement' => 'top']) 
+			->addTab('Ustawienia bloku', ['placement' => 'top'])
 
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
@@ -77,16 +74,23 @@ class HeroSecond extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $hero_second;
+		return $hero_sub;
 	}
 
 	public function with()
 	{
 		return [
-			'g_herosecond' => get_field('g_herosecond'),
+			'g_hero_sub' => get_field('g_hero_sub'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
-			'gfx_top' => get_field('gfx_top'),
-			'gfx_bottom' => get_field('gfx_bottom'),
+			'wide' => get_field('wide'),
+			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
 		];
 	}
 }

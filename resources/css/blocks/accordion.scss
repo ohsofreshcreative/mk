@@ -30,7 +30,7 @@
   .accordion-label:hover {
   }
   .accordion-label::after {
-    content: url('http://raab.local/wp-content/uploads/2025/06/plus.svg');
+    content: url('http://mk.local/wp-content/uploads/2025/08/plus.svg');
     text-align: right;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
@@ -38,7 +38,7 @@
     transform: scale(0.9);
     height: 24px;
     width: 24px;
-    border-radius: 2px;
+    border-radius: 40px;
     background-color: var(--primary);
   }
   .accordion-content {
@@ -65,13 +65,13 @@
     border: 1px solid var(--primary);
   }
   input:checked + .accordion-label::after {
-    content: url('http://raab.local/wp-content/uploads/2025/06/minus.svg');
+    content: url('http://mk.local/wp-content/uploads/2025/08/minus.svg');
   }
   .accordion:has(input:checked) {
     padding-bottom: 24px;
   }
   input:checked ~ .accordion-content {
     max-height: 1200px;
-    padding: 8px 24px 20px 0px;
+    padding: 8px 24px 0px 0px;
   }
 }

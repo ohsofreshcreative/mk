@@ -37,28 +37,68 @@ class Proces extends Block
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addGroup('proces', ['label' => ''])
 
+			->addGroup('g_proces', ['label' => ''])
+			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->endGroup()
 
-			->addRepeater('repeater', [
+			->addTab('Kafelki', ['placement' => 'top'])
+			->addRepeater('r_proces', [
 				'label' => 'Proces',
-				'layout' => 'row', // 'row', 'block', albo 'table'
-				'min' => 5,
-				'min' => 5,
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 4,
+				'min' => 4,
 				'button_label' => 'Dodaj element oferty'
 			])
-			->addText('proces_title', [
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addText('title', [
 				'label' => 'Krok',
 			])
+			->addTextarea('txt', [
+				'label' => 'Opis',
+			])
 			->endRepeater()
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -69,14 +109,24 @@ class Proces extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
+			->addTrueFalse('graybg', [
+				'label' => 'Szare tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('brandbg', [
+				'label' => 'Tło marki',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			]);
-
-
 
 		return $proces;
 	}
@@ -84,10 +134,18 @@ class Proces extends Block
 	public function with()
 	{
 		return [
-			'proces' => get_field('proces'),
+			'g_proces' => get_field('g_proces'),
+			'r_proces' => get_field('r_proces'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
+			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
 		];
 	}
 }

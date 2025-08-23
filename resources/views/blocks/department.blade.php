@@ -15,7 +15,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		<div class="">
 
 			@if (!empty($g_department['title']))
-			<h2 class="__before mb-10">{{ strip_tags($g_department['title']) }}</h2>
+			<h2 class="mb-10">{{ strip_tags($g_department['title']) }}</h2>
 			@endif
 
 			@if (!empty($g_department['r_department']))

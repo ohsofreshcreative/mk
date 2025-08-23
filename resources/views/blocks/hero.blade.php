@@ -3,41 +3,32 @@ $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
 @endphp
 
-@php
-$backgroundImage = !empty($hero['image']['url']) ? "linear-gradient(270deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.90) 100%), url({$hero['image']['url']})" : '';
-@endphp
-
 <!-- hero --->
 
-<section data-gsap-anim="section" class="hero relative {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: center;">
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="hero bg-secondary relative -menu-pt {{ $sectionClass }} {{ $section_class }}" style="background-image: url('http://mk.local/wp-content/uploads/2025/08/hero-bg.png'); object-fit:cover;">
 
-	<div class="__wrapper c-main relative z-1 {{ !empty($hero['image']) ? 'py-50' : '' }}">
+	<div class="__wrapper c-wide grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
 
-		<h2 data-gsap-element="header" class="text-white w-full sm:w-2/3">{{ $hero['title'] }}</h2>
-
-		<div data-gsap-element="content" class="text-white mt-2 __content">
-			{!! $hero['content'] !!}
+		<div class="__content py-30">
+			<h2 data-gsap-element="header" class="trajan text-white !text-7xl">{{ $g_hero['title'] }}</h2>
+			<div data-gsap-element="txt" class="text-white mt-2">
+				{!! $g_hero['txt'] !!}
+			</div>
+			@if (!empty($g_hero['button1']))
+			<div class="inline-buttons m-btn">
+				<a data-gsap-element="button" class="white-btn left-btn" href="{{ $g_hero['button1']['url'] }}" target="{{ $g_hero['button1']['target'] }}">{{ $g_hero['button1']['title'] }}</a>
+				@if (!empty($g_hero['button2']))
+				<a data-gsap-element="button" class="main-btn" href="{{ $g_hero['button2']['url'] }}" target="{{ $g_hero['button2']['target'] }}">{{ $g_hero['button2']['title'] }}</a>
+				@endif
+			</div>
+			@endif
 		</div>
 
-		@if (!empty($hero['cta']))
-		<a data-gsap-element="button" class="main-btn m-btn" href="{{ $hero['cta']['url'] }}" target="{{ $hero['cta']['target'] }}">{{ $hero['cta']['title'] }}</a>
+		@if (!empty($g_hero['image']))
+		<div data-gsap-element="img-right" class="image-reveal-wrapper">
+			<img class="img-2xl" src="{{ $g_hero['image']['url'] }}" alt="{{ $g_hero['image']['alt'] ?? '' }}">
+		</div>
 		@endif
-
 	</div>
 
-	@if(get_field('gfx_top'))
-	<div class="absolute top-0 left-0 -ml-1">
-		<svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="271" height="265" viewBox="0 0 271 265">
-			<path fill-rule="evenodd" clip-rule="evenodd" d="M0.485036 0.184698H270.5L62.2153 62.5939L0.485036 265V0.184698Z" fill="#E30613" />
-		</svg>
-	</div>
-	@endif
-
-	@if(get_field('gfx_bottom'))
-	<div class="absolute -bottom-16 md:bottom-0 -right-28 md:right-0">
-		<svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="1026" height="802" viewBox="0 0 1026 802" fill="none">
-			<path fill-rule="evenodd" clip-rule="evenodd" d="M1026.1 801.61H0.499762L860.349 543.971L1026.1 0.500002L1026.1 801.61Z" fill="#E30613" />
-		</svg>
-	</div>
-	@endif
-</section> 
+</section>

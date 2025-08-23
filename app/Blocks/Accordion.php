@@ -53,9 +53,7 @@ class Accordion extends Block
 				'preview_size' => 'medium',
 			])
 
-			->addText('subtitle', ['label' => 'Sródtytuł'])
-
-			->addWysiwyg('content', [
+			->addWysiwyg('txt', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
 				'toolbar' => 'full', // 'basic', 'full'
@@ -85,22 +83,57 @@ class Accordion extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 		
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
+			
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-
-			->addTrueFalse('darkbg', [
-				'label' => 'Ciemne tło',
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-
-			->addTrueFalse('bgimage', [
-				'label' => 'Grafika w tle',
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('lightbg', [
+				'label' => 'Jasne tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('graybg', [
+				'label' => 'Szare tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('brandbg', [
+				'label' => 'Tło marki',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -113,10 +146,17 @@ class Accordion extends Block
 	{
 		return [
 			'g_accordion' => get_field('g_accordion'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
-			'darkbg' => get_field('darkbg'),
-			'bgimage' => get_field('bgimage'),
+			'wide' => get_field('wide'),
+			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
 		];
 	}
 }

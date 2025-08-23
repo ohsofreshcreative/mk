@@ -41,6 +41,7 @@ class Team extends Block
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_team', ['label' => ''])
 
+			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
