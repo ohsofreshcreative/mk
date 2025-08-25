@@ -49,15 +49,16 @@ class Contact extends Block
 			->addText('mail', [
 				'label' => 'Adres e-mail',
 			])
-			->addTextarea('adres', [
-				'label' => 'Adres',
-				'rows' => 6,
-				'new_lines' => 'br',
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
 			])
-			->addTextarea('data', [
-				'label' => 'Dane spółki',
-				'rows' => 6,
-				'new_lines' => 'br',
+			->addWysiwyg('adres', [
+				'label' => 'Adres',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => false,
 			])
 			->endGroup()
 			/*--- TAB #2 ---*/

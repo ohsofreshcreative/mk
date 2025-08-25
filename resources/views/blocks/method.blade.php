@@ -10,11 +10,13 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
+<!--- method --->
+
 <section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="method -smt {{ $sectionClass }} {{ $section_class }}">
 	<div class="__wrapper c-main">
 		<div class="relative">
 
-			<div class="grid grid-cols-1 md:grid-cols-2 items-center section-gap">
+			<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
 				@if (!empty($g_method['title']))
 				<h2 data-gsap-element="header" class="m-title">{{ strip_tags($g_method['title']) }}</h2>
 				@endif
@@ -29,15 +31,17 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 						{{ $loop->iteration }}
 					</p>
 
-					<p class="trajan text-2xl secondary flex-1 self-stretch flex items-center">
-						{{ $item['title'] }}
-					</p>
+					<div class="flex flex-col lg:flex-row gap-8">
+						<p class="trajan text-2xl secondary flex-1 self-stretch flex items-center">
+							{{ $item['title'] }}
+						</p>
 
-					<p class="w-1/4  flex-1 self-stretch flex items-center">
-						{{ $item['txt'] }}
-					</p>
+						<p class="flex-1 self-stretch flex items-center">
+							{{ $item['txt'] }}
+						</p>
+					</div>
 
-					<img class="img-s radius-img block" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+					<img class="img-s radius-img block aspect-square md:aspect-auto" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
 				</div>
 				@endforeach
 			</div>

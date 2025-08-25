@@ -9,8 +9,8 @@ $sectionClass .= $flip ? ' order-flip' : '';
 
 	<div class="__wrapper c-wide grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
 
-		<div class="__content py-30">
-			<h2 data-gsap-element="header" class="trajan text-white !text-7xl">{{ $g_hero['title'] }}</h2>
+		<div class="__content pt-20 pb-10 md:py-30">
+			<h2 data-gsap-element="header" class="trajan text-white !text-4xl md:!text-7xl">{{ $g_hero['title'] }}</h2>
 			<div data-gsap-element="txt" class="text-white mt-2">
 				{!! $g_hero['txt'] !!}
 			</div>
@@ -26,7 +26,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 
 		@if (!empty($g_hero['image']))
 		<div data-gsap-element="img-right" class="image-reveal-wrapper">
-			<img class="img-2xl" src="{{ $g_hero['image']['url'] }}" alt="{{ $g_hero['image']['alt'] ?? '' }}">
+			<img class="" src="{{ $g_hero['image']['url'] }}" alt="{{ $g_hero['image']['alt'] ?? '' }}">
 		</div>
 		@endif
 	</div>

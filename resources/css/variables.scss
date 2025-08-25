@@ -1079,7 +1079,7 @@ textarea {
 input[type='submit'] {
   font-size: 16px;
   background: var(--primary) !important;
-  color: var((--body));
+  color: #FFF;
   padding: 15px 45px;
   display: inline-block;
   transition: all 0.2s ease-out;
@@ -1388,23 +1388,25 @@ article.post:hover .blog-btn {
     max-height: 500px; /* Ustaw odpowiednią wartość */
   }
   .widget-title::after {
-    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
+    content: url('http://mk.local/wp-content/uploads/2025/08/down-arrow.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
     /* transform: translateY(-50%);*/
     transition: transform 0.3s;
     display: block !important;
+	width: 12px;
   }
 
   .footer_widget.open .widget-title::after {
-    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
+    content: url('http://mk.local/wp-content/uploads/2025/08/down-arrow.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
     transform: scaleY(-1);
     transition: transform 0.3s;
     display: block !important;
+	width: 12px;
   }
   .__widget {
     width: 100%;

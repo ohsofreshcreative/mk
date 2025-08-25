@@ -16,7 +16,7 @@ $backgroundImage = !empty($bottom['image']['url']) ? "linear-gradient(0deg, rgba
 
 <!-- bottom-block -->
 
-<section data-gsap-anim="section" class="cta-bottom relative overflow-hidden -smt bg-dark {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: right;">
+<section data-gsap-anim="section" class="cta-bottom relative overflow-hidden -smt bg-dark {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: 50%;">
 	<div class="c-main py-40">
 		<div class="w-full md:w-1/2">
 			<p class="subtitle-s">{{ strip_tags($bottom['subtitle']) }}</p>

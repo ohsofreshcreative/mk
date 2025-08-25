@@ -13,11 +13,12 @@ $sectionClass .= $secondarybg ? ' section-secondary' : '';
 $sectionId = $section_id ?? null;
 $customClass = $block->data['className'] ?? '';
 
-$count = is_countable($items ?? null) ? count($items) : 0;
-
-$cols = $count >= 4 ? 4 : max(1, $count);
-$gridCols = 'grid-cols-' . $cols;
+  $count = is_countable($items ?? null) ? count($items) : 0;
+  $cols  = $count >= 4 ? 4 : max(1, $count);
+  $lgGridCols = 'lg:grid-cols-' . $cols; // np. lg:grid-cols-3
 @endphp
+
+<!--- offer --->
 
 <section data-gsap-anim="section"
 	@if($sectionId) id="{{ $sectionId }}" @endif
@@ -30,7 +31,7 @@ $gridCols = 'grid-cols-' . $cols;
 			@endif
 
 			@if(!empty($items))
-			<div class="__grid mt-10 grid {{ $gridCols }} gap-6">
+			<div class="__grid mt-10 grid grid-cols-1 md:grid-cols-1 {{ $lgGridCols }} gap-6">
 				@foreach($items as $post)
 				<article data-gsap-element="stagger" class="__card bg-white b-border-light h-full flex flex-col rounded-3xl">
 					@if(!empty($post['image']))

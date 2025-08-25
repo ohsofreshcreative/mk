@@ -21,6 +21,7 @@
 @import '../css/blocks/cases-slider.scss';
 @import '../css/blocks/proces.scss';
 @import '../css/blocks/steps.scss';
+@import '../css/blocks/path.scss';
 @import '../css/blocks/contact.scss';
 
 @import 'swiper/css';
