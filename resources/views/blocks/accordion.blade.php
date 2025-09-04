@@ -27,9 +27,9 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 					@endif
 					<div data-gsap-element="accordion" class="accordion-wrapper grid mt-10">
 						@foreach ($repeater as $item)
-						<div class="accordion px-8 rounded-2xl border-p-light">
+						<div class="accordion px-6 md:px-8 rounded-2xl border-p-light">
 							<input class="acc-check" type="radio" name="radio-a" id="check{{ $loop->index }}" {{ $loop->first ? 'checked' : '' }}>
-							<label class="accordion-label text-h5" for="check{{ $loop->index }}">{{ $item['title'] }}</label>
+							<label class="accordion-label font-semibold text-md md:text-h5 gap-4" for="check{{ $loop->index }}">{{ $item['title'] }}</label>
 							<div class="accordion-content">
 								<p>{!! $item['txt'] !!}</p>
 							</div>

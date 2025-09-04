@@ -43,7 +43,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 			<div class="order2">
 
 				@foreach ($repeater as $item)
-				<div data-gsap-element="card" class="__card bg-white border-s rounded-3xl p-10 mb-6">
+				<div data-gsap-element="card" class="__card bg-white border-s rounded-3xl p-6 md:p-10 mb-6">
 					<img class="" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
 					<h6 class="mt-6">{{ $item['card_title'] }}</h6>
 					<p class="mt-2">{{ $item['card_txt'] }}</p>

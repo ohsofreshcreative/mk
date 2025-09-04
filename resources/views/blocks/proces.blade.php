@@ -10,6 +10,8 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
+<!--- proces --->
+
 <section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="proces -smt {{ $sectionClass }} {{ $section_class }}">
 	<div class="__wrapper c-main">
 		<div class="relative">
@@ -28,7 +30,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			<div class="__repeater gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-16">
 
 				@foreach ($r_proces as $item)
-				<div data-gsap-element="stagger" class="flex flex-col bg-white rounded-3xl border-s-light px-8 py-20">
+				<div data-gsap-element="stagger" class="flex flex-col bg-white rounded-3xl border-s-light px-6 py-10 md:px-8 md:py-20">
 					<img class="" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
 					<h5 class="mt-4">{{ $item['title'] }}</h5>
 					<p class="mt-2">{{ $item['txt'] }}</p>

@@ -31,9 +31,9 @@ $customClass = $block->data['className'] ?? '';
 				@foreach ($r_overlap as $item)
 				<div class="gsap__cards __cards sticky top-20 mt-4">
 					<div class="gsap__card __card  b-border p-8 rounded-4xl" style="background-image:url({{ $item['r_image']['url'] }}); background-size: cover; background-position: center;">
-						<div class="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-10 bg-white b-border p-10 mt-80 mb-0 md:mb-10 mx-0 md:mx-20 rounded-3xl">
+						<div class="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-10 bg-white b-border p-6 md:p-10 mt-80 mb-0 md:mb-10 mx-0 md:mx-20 rounded-3xl">
 							<img src="/wp-content/uploads/2025/08/overlap-icon.svg" />
-							<h5 class="secondary">{{ $item['r_header'] }}</h5>
+							<h5 class="secondary !text-[20px] md:text-h5">{{ $item['r_header'] }}</h5>
 							<div class="">{!! $item['r_txt'] !!}</div>
 						</div>
 					</div>
