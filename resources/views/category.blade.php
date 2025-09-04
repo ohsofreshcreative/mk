@@ -41,7 +41,7 @@ $current_category_url = $term ? get_category_link($term->term_id) : home_url(); 
 			</div>
 
 			<div class="flex flex-col justify-center">
-				<h2 class="trajan text-3xl md:text-5xl">
+				<h2 class="!text-2xl md:!text-3xl mr-4 md:mr-10">
 					{{ get_the_title($featured_post) }}
 				</h2>
 
@@ -60,7 +60,7 @@ $current_category_url = $term ? get_category_link($term->term_id) : home_url(); 
 @endif
 
 <div class="-smt">
-	<div class="__wrapper c-main flex gap-4">
+	<div class="__wrapper c-main flex gap-4 overflow-x-scroll">
 		<a class="stroke-small-btn" href="/kategorie/wszystkie-wpisy/">Wszystkie wpisy</a>
 		@foreach($categories as $category)
 		@if($category->name !== 'Wszystkie wpisy')

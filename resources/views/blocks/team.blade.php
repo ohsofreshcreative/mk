@@ -13,7 +13,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 <section data-gsap-anim="section" class="cards -smt {{ $sectionClass }}">
 	<div class="__wrapper c-main">
 
-		<div class="w-1/2">
+		<div class="w-full lg:w-1/2">
 			@if (!empty($g_team['subtitle']))
 			<p data-gsap-element="subheader" class="subtitle-s">{{ strip_tags($g_team['subtitle']) }}</p>
 			@endif

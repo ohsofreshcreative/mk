@@ -26,12 +26,12 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			@if (!empty($r_method))
 			<div class="__repeater mt-10">
 				@foreach ($r_method as $item)
-				<div data-gsap-element="stagger" class="flex items-stretch gap-10 b-border-t pt-12 mb-12">
+				<div data-gsap-element="stagger" class="flex flex-col md:flex-row items-start lg:items-stretch gap-10 b-border-t pt-12 mb-12">
+					<div class="flex flex-col lg:flex-row gap-2 lg:gap-8">
 					<p class="trajan text-5xl secondary b-border-r pr-6 self-stretch flex items-center w-12">
 						{{ $loop->iteration }}
 					</p>
 
-					<div class="flex flex-col lg:flex-row gap-8">
 						<p class="trajan text-2xl secondary flex-1 self-stretch flex items-center">
 							{{ $item['title'] }}
 						</p>
@@ -41,7 +41,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 						</p>
 					</div>
 
-					<img class="img-s radius-img block aspect-square md:aspect-auto" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+					<img class="img-s radius-img block " src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
 				</div>
 				@endforeach
 			</div>

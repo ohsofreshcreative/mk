@@ -930,6 +930,17 @@ h6,
   z-index: 99999;
 }
 
+#mobile-menu-panel {
+	li a {
+		color:#FFF;
+		font-size:20px;
+		font-weight: 300;
+	}
+	li a:hover {
+		color:var(--text-p-light);
+	}
+}
+
 /*--- !ANIMATIONS ---*/
 
 .image-reveal-wrapper {
@@ -1485,6 +1496,7 @@ article.post:hover .blog-btn {
   :root {
     --img-m: 240px;
     --img-l: 240px;
+    --img-2xl: 320px;
   }
   h1,
   .text-h1 {

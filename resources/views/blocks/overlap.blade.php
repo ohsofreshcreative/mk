@@ -13,11 +13,13 @@ $sectionId = $block->data['id'] ?? null;
 $customClass = $block->data['className'] ?? '';
 @endphp
 
+<!--- overlap --->
+
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="overlap relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	<div class="__wrapper c-main relative">
 		<div class="__content order2">
-			<div class="__txt w-1/2 mx-auto">
+			<div class="__txt w-full md:w-1/2 mx-auto">
 				<h2 data-gsap-element="header" class="text-center m-title">{{ $g_overlap['title'] }}</h2>
 
 				<div data-gsap-element="header" class="text-center">
@@ -28,11 +30,11 @@ $customClass = $block->data['className'] ?? '';
 			<div class="grid grid-cols-1 gap-8 mt-14">
 				@foreach ($r_overlap as $item)
 				<div class="gsap__cards __cards sticky top-20 mt-4">
-					<div class="gsap__card __card  b-border p-8  rounded-4xl" style="background-image:url({{ $item['r_image']['url'] }}); background-size: cover; background-position: center;">
-						<div class="flex items-center gap-10 bg-white b-border p-10 mt-80 mb-10 mx-20 rounded-3xl">
+					<div class="gsap__card __card  b-border p-8 rounded-4xl" style="background-image:url({{ $item['r_image']['url'] }}); background-size: cover; background-position: center;">
+						<div class="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-10 bg-white b-border p-10 mt-80 mb-0 md:mb-10 mx-0 md:mx-20 rounded-3xl">
 							<img src="/wp-content/uploads/2025/08/overlap-icon.svg" />
 							<h5 class="secondary">{{ $item['r_header'] }}</h5>
-							<p class="">{!! $item['r_txt'] !!}</p>
+							<div class="">{!! $item['r_txt'] !!}</div>
 						</div>
 					</div>
 				</div>
