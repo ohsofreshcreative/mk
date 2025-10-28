@@ -38,7 +38,7 @@ $backgroundImage = !empty($g_hero_sub['image']['url']) ? "linear-gradient(270deg
 		</div>
 	</div>
 
-	<img class="absolute top-0 left-0" src="http://mk.local/wp-content/uploads/2025/08/hero-shape.svg" />
+	<img class="absolute top-0 left-0" src="/wp-content/uploads/2025/08/hero-shape.svg" />
 
 	<a href="#" class="js-scroll-to-next">
 		<div class="__arrow bg-primary">

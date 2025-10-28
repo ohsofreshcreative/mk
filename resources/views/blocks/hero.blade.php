@@ -5,7 +5,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 
 <!-- hero --->
 
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="hero bg-secondary relative -menu-pt {{ $sectionClass }} {{ $section_class }}" style="background-image: url('http://mk.local/wp-content/uploads/2025/08/hero-bg.png'); object-fit:cover;">
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="hero bg-secondary relative -menu-pt {{ $sectionClass }} {{ $section_class }}" style="background-image: url('/wp-content/uploads/2025/08/hero-bg.png'); object-fit:cover;">
 
 	<div class="__wrapper c-wide grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
 

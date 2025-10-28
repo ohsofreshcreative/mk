@@ -1356,14 +1356,14 @@ article.post:hover img {
 /*--- !CTA - STOPKA ---*/
 .cta-bottom {
   .__phone::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/phone.svg');
+    content: url('/wp-content/uploads/2025/06/phone.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
   }
 
   .__mail::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/mail.svg');
+    content: url('/wp-content/uploads/2025/06/mail.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -1378,7 +1378,7 @@ article.post:hover img {
 
 .footer {
   .__wrap {
-    background-image: url('http://mk.local/wp-content/uploads/2025/08/footer-bg.png');
+    background-image: url('/wp-content/uploads/2025/08/footer-bg.png');
   }
 
   .__widgets {
@@ -1449,7 +1449,7 @@ article.post:hover img {
   }
 
   .widget-title::after {
-    content: url('http://mk.local/wp-content/uploads/2025/08/down-arrow.svg');
+    content: url('/wp-content/uploads/2025/08/down-arrow.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
@@ -1460,7 +1460,7 @@ article.post:hover img {
   }
 
   .footer_widget.open .widget-title::after {
-    content: url('http://mk.local/wp-content/uploads/2025/08/down-arrow.svg');
+    content: url('/wp-content/uploads/2025/08/down-arrow.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
