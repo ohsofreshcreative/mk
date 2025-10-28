@@ -122,7 +122,7 @@ class TextImage extends Block
 	public function with()
 	{
 		return [
-			'textimg' => get_field('textimg'),
+			'g_textimg' => get_field('g_textimg'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
