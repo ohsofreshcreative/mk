@@ -39,7 +39,7 @@ class TextImage extends Block
 			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('textimg', ['label' => ''])
+			->addGroup('g_textimg', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
