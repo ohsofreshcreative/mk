@@ -170,26 +170,21 @@ add_action('widgets_init', function () {
 });
 
 
-/*-- CAREER MODAL ---*/
+/*-- CLEAN TEXT PASTE ---*/
 
-add_action('wp_footer', function () {
-	$cf7_shortcode = '[contact-form-7 id="e0f7075" title="Wyślij CV"]';
+// Wymusza plain paste w ACF WYSIWYG (także w blokach ACF)
+add_filter('acf/fields/wysiwyg/settings', function ($settings) {
+    // tryb: wklejaj jako czysty tekst
+    $settings['paste_as_text'] = true;
 
-	echo '
-    <!-- Modal Overlay -->
-    <div id="side-modal-overlay" class="fixed inset-0 bg-black bg-opacity-20 z-50 hidden transition-opacity duration-300 ease-in-out"></div>
+    // dopalacz dla TinyMCE (czyści style/spany itd.)
+    $settings['tinymce'] = array_merge($settings['tinymce'] ?? [], [
+        'paste_as_text' => true,
+        'paste_auto_cleanup_on_paste' => true,
+        'paste_remove_styles' => true,
+        'paste_remove_spans' => true,
+        'valid_elements' => '', // opcjonalnie: nie pozwalaj na żadne tagi
+    ]);
 
-    <!-- Side Modal -->
-    <div id="side-modal" class="fixed top-0 right-0 h-full w-full max-w-lg bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-8 h-full overflow-y-auto">
-            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
-			<h5 class="m-title">Aplikuj na to stanowisko</h5>
-            <div>Wypełnij formularz i dołącz swoje CV – odezwiemy się, aby omówić szczegóły i odpowiedzieć na Twoje pytania.</div>
-            <!-- CF7 Form Container -->
-            <div class="modal-content mt-8">
-                ' . do_shortcode($cf7_shortcode) . '
-            </div>
-        </div>
-    </div>
-    ';
+    return $settings;
 });

@@ -39,7 +39,7 @@ class Opinion extends Block
 			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('textimg', ['label' => ''])
+			->addGroup('g_opinion', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
@@ -52,6 +52,7 @@ class Opinion extends Block
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
 			])
+			->addText('signature', ['label' => 'Podpis'])
 			->addLink('button', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',
@@ -122,7 +123,7 @@ class Opinion extends Block
 	public function with()
 	{
 		return [
-			'textimg' => get_field('textimg'),
+			'g_opinion' => get_field('g_opinion'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),

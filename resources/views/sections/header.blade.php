@@ -15,16 +15,23 @@ use App\Walkers\MobileDropdownWalker;
 			@endif
 		</a>
 		@if (has_nav_menu('primary_navigation'))
-		<nav class="ml-15 nav-primary w-full" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+		<nav class="ml-6 lg:ml-15 nav-primary w-full" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
 			{!! wp_nav_menu([
 			'theme_location' => 'primary_navigation',
-			'menu_class' => 'nav flex gap-x-5 lg:gap-x-8 text-sm font-medium items-center', // Usunięto 'nav-link' jeśli jest zbędne
+			'menu_class' => 'nav flex gap-x-3 lg:gap-x-6 text-sm font-medium items-center', 
 			'container' => false,
 			'echo' => false,
 			'walker' => new DropdownWalker(),
 			]) !!}
 		</nav>
 		@endif
+
+
+			<div class="">
+				<a href="/kontakt/" class="block w-full white-btn-s">
+					Umów konsultację
+				</a>
+			</div>
 	</div>
 
 	<!-- Mobile Header Bar -->

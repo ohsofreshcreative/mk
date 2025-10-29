@@ -18,6 +18,8 @@ $uid = 'offer-tabs-' . ($sectionId ?: wp_unique_id());
 $colCount = in_array((string)$columns, ['2', '3', '4'], true) ? (string)$columns : '3';
 @endphp
 
+<!--- offer-cards-block --->
+
 <section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif
 	class="offer-cards -smt {{ $section_class }} {{ $sectionClass }}">
 
