@@ -34,8 +34,10 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 				<b data-gsap-element="txt" class="block mt-4">{{ $g_opinion['signature'] }}</b>
 
-				@if (!empty($g_opinion['button']))
-				<a data-gsap-element="btn" class="main-btn m-btn" href="{{ $g_opinion['button']['url'] }}">{{ $g_opinion['button']['title'] }}</a>
+				@if (!empty($g_opinion['lightbox_image']))
+				<a data-gsap-element="btn" class="main-btn m-btn glightbox" href="{{ esc_url($g_opinion['lightbox_image']['url']) }}">
+					Zobacz referencję
+				</a>
 				@endif
 
 			</div>

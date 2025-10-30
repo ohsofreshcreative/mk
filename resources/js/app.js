@@ -3,6 +3,7 @@ import.meta.glob(['../images/**', '../fonts/**']);
 import './menubar.js';
 import './footer-accordion.js';
 import './swiper.js';
+import './lightbox.js';
 
 /*--- BLOCKS ---*/
 

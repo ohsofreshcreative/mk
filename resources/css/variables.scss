@@ -422,7 +422,7 @@ a {
 .subtitle-s {
 	display: block;
 	font-size: 16px;
-	color: var(--s-400);
+	color: var(--s-200);
 	padding-bottom: 16px;
 }
 
@@ -1393,6 +1393,10 @@ article.post:hover img {
 }
 
 /*--- !FOOTER ---*/
+
+.page-id-243 .footer {
+	margin-top:104px !important;
+}
 
 .footer-py {
 	padding: var(--footer-py);

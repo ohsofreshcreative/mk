@@ -53,9 +53,10 @@ class Opinion extends Block
 				'media_upload' => true,
 			])
 			->addText('signature', ['label' => 'Podpis'])
-			->addLink('button', [
-				'label' => 'Przycisk',
+			->addImage('lightbox_image', [
+				'label' => 'Grafika referencji',
 				'return_format' => 'array',
+				'preview_size' => 'medium',
 			])
 			->endGroup()
 
