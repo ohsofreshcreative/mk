@@ -12,7 +12,7 @@ $sectionClass = '';
 					<p data-gsap-element="subheader" class="subtitle-s">Kontakt</p>
 					<h2 data-gsap-element="subheader" class="trajan m-title text-white">{!! $g_contact_1['title'] !!}</h2>
 					<a data-gsap-element="subheader" class="__phone flex items-center text-white text-2xl w-max mt-4" href="tel:{{ $g_contact_1['phone'] }}">{{ $g_contact_1['phone'] }}</a>
-					<a data-gsap-element="subheader" class="__mail flex items-center text-white text-2xl w-max mt-4" href="mailto:{{ $g_contact_1['phone'] }}">{{ $g_contact_1['mail'] }}</a>
+					<a data-gsap-element="subheader" class="__mail flex items-center text-white text-2xl w-max mt-4" href="mailto:{{ $g_contact_1['mail'] }}">{{ $g_contact_1['mail'] }}</a>
 					<div data-gsap-element="subheader" class="flex flex-col md:flex-row items-start md:items-center gap-8 mt-10">
 						<img class="object-cover aspect-square img-xs __img radius-img" src="{{ $g_contact_1['image']['url'] }}" alt="{{ $g_contact_1['image']['alt'] ?? '' }}">
 						<div class="__address">{!! $g_contact_1['adres'] !!}</div>
