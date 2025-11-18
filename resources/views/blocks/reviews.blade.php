@@ -31,7 +31,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 							<div class="__card">
 								<div class="__rectangle absolute"></div>
 								@if(!empty($card['txt']))
-								<div class="__txt">{{ $card['txt'] }}</div>
+								<div class="__txt">{!! $card['txt'] !!}</div>
 								@endif
 								<div class="flex items-center gap-4 mt-6">
 									@if(!empty($card['img']))

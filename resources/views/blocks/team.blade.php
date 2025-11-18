@@ -44,7 +44,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			@foreach ($repeater as $item)
 			<div data-gsap-element="card" class="__card relative">
 			<div data-gsap-element="img-left" class="image-reveal-wrapper radius-img">
-				<img class="img-xl w-full radius-img object-cover mb-6" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
+				<img class="img-xl w-full radius-img object-cover object-top mb-6" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
 				</div>
 
 				<div class="">
