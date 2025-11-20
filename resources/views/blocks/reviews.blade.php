@@ -21,7 +21,6 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 					<div data-gsap-element="txt" class="text-gray mt-2">{{ strip_tags($g_reviews['txt']) }}</div>
 					<div class="flex items-center justify-between my-8">
 						<img src="/wp-content/uploads/2025/08/quote.svg" />
-						<img src="/wp-content/uploads/2025/08/stars.svg" />
 					</div>
 				</div>
 				<div class="swiper reviews-swiper c-main !overflow-hidden">
@@ -31,7 +30,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 							<div class="__card">
 								<div class="__rectangle absolute"></div>
 								@if(!empty($card['txt']))
-								<div class="__txt">{!! $card['txt'] !!}</div>
+								<div class="__txt text-sm">{!! $card['txt'] !!}</div>
 								@endif
 								<div class="flex items-center gap-4 mt-6">
 									@if(!empty($card['img']))
